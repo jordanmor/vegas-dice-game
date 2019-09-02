@@ -3,11 +3,11 @@
 Tech Talent Select Midpoint Project - up for review by The Hartford
 
 ### My Personal Project Goals
-- Use this project as an opportunity to utilize Spring Boot, by building a REST API that will send game data to an interactive front end
-- Make my application available at a public URL using Heroku
-- On the backend, persist highest player scores with an online mySQL database
-- Animate dice using CSS 3D animations
-- Produce an MVP by project due date
+- Use this project as an opportunity to utilize Spring Boot, by building a REST API that will send game data to an interactive front end.
+- Host Spring Boot RESTful app on Heroku. Make front-end application available at a public URL using GitHub pages.
+- On the backend, persist highest player scores with an online mySQL database.
+- Animate dice using CSS 3D animations.
+- Produce an MVP by project due date.
 
 **Project Assigned:** 08/30/2019  
 **Project Due:** 09/06/2019
