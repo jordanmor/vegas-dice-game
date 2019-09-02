@@ -13,7 +13,7 @@ public class GameService {
     private GameResponse gameResponse = new GameResponse();
     private int gamePoint;
 
-    public GameResponse roll() {
+    private GameResponse roll() {
         gameResponse.setDieOne((int) (Math.random() * 6) + 1);
         gameResponse.setDieTwo((int) (Math.random() * 6) + 1);
         gameResponse.setSum(gameResponse.getDieOne() + gameResponse.getDieTwo());
