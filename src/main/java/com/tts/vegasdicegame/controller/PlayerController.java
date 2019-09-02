@@ -12,7 +12,7 @@ import java.util.List;
 public class PlayerController {
 
     @Autowired
-    PlayerService playerService;
+    private PlayerService playerService;
 
     @GetMapping(value = "/")
     public String welcomeMessage() {
