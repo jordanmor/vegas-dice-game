@@ -14,19 +14,16 @@ public class GameService {
     private int gamePoint;
 
     public GameResponse roll() {
-        int die1 = (int) (Math.random() * 6) + 1;
-        int die2 = (int) (Math.random() * 6) + 1;
-        gameResponse.setDieOne(die1);
-        gameResponse.setDieTwo(die2);
-        int sum = gameResponse.getDieOne() + gameResponse.getDieTwo();
-        gameResponse.setSum(sum);
+        gameResponse.setDieOne((int) (Math.random() * 6) + 1);
+        gameResponse.setDieTwo((int) (Math.random() * 6) + 1);
+        gameResponse.setSum(gameResponse.getDieOne() + gameResponse.getDieTwo());
         gameResponse.setPoint(gameResponse.getSum());
-        System.out.println(gameResponse.getDieOne());
         return gameResponse;
     }
 
     public GameResponse playGame() {
         if(gameResponse.isNewGame()) {
+            gameResponse.setMessage(null);
             roll();
             gamePoint = gameResponse.getPoint();
             if (WINS.contains(gameResponse.getPoint())) {

@@ -14,7 +14,7 @@ public class GameController {
 
     @GetMapping(value = "/play")
     public GameResponse playGame() {
-        gameService.roll();
+        gameService.playGame();
         return gameService.getGameResponse();
     }
 
