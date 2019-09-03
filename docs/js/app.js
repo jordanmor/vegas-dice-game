@@ -5,11 +5,11 @@ const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2500;
 
 // Start modal on page load
-$('#modal').modal({
-  show: true,
-  keyboard: false,
-  backdrop: 'static'
-});
+// $('#modal').modal({
+//   show: true,
+//   keyboard: false,
+//   backdrop: 'static'
+// });
 
 $('#roll').on('click', function() {
 
@@ -46,6 +46,9 @@ $('#roll').on('click', function() {
         "pointer-events":"auto",
         "cursor":"pointer"
       });
+      // Game info also updates after the dice stop rolling
+      $('#credits').text(data.score);
+      $('#point').text(data.point);
     }, animationDuration);
   });
 });

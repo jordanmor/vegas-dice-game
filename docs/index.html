@@ -10,9 +10,13 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Vegas Dice Game</h1>
+    <h1 class="mb-3">Vegas Dice Game</h1>
 
-    <main>
+    <div class="container container-above-table d-flex justify-content-center">
+        <h2>Player1</h2>
+        <button id="cashOut" class="btn-cash-out">Cash Out</button>
+    </div>
+    <main class="container">
         <div class="cube-container">
             <div id="dieOne" class="cube die-one">
                 <div class="side one">1</div>
@@ -36,7 +40,26 @@
         </div>
     </main>
 
-    <div>
+    <div class="container game-info">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Credits</th>
+                <th scope="col">Point</th>
+                <th scope="col">Bet Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="credits">100</td>
+                    <td id="point">5</td>
+                    <td id="bet">10</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container d-flex justify-content-center">
         <button id="roll" class="btn-roll">Roll</button>
     </div>
       
