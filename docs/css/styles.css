@@ -1,3 +1,19 @@
+/*============-============-============-============
+                       VARIABLES
+==============-============-============-==========*/
+
+:root {
+    --color-primary: #323639;
+    --color-secondary: rgba(44, 62, 80, 0.95);
+    --color-cube-face: rgba(245, 241, 241, 0.95);
+
+    --size-cube: 80px;
+}
+
+/*============-============-============-============
+                     GLOBAL STYLES
+==============-============-============-==========*/
+
 html {
     box-sizing: border-box;
 }
@@ -20,6 +36,10 @@ body {
     height: 100%;
 }
 
+body {
+    color: var(--color-primary);
+}
+
 main {
     width: 100%;
     height: 60%;
@@ -27,4 +47,62 @@ main {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+/*============-============-============-============
+                         CUBES
+==============-============-============-==========*/
+
+.cube-container {
+    perspective: 800px;
+    background-color: transparent;
+  }
+  
+.cube-container + .cube-container {
+    margin-left: 5rem;
+}
+  
+.cube {
+    width: var(--size-cube);
+    height: var(--size-cube);
+    transform-style: preserve-3d;
+    transform: translateZ(-100px) rotateX( 4deg) rotateY( 2deg);
+}
+
+.cube .side {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    border: 1px solid var(--color-secondary);
+    border-radius: 1px;
+    font-size: 2rem;
+    background: var(--color-cube-face);
+}
+
+.cube .one { transform: rotateY(  0deg) translateZ(calc(var(--size-cube) / 2)); }
+.cube .two { transform: rotateX(-90deg) translateZ(calc(var(--size-cube) / 2)); }
+.cube .three { transform: rotateY( 90deg) translateZ(calc(var(--size-cube) / 2)); }
+.cube .four { transform: rotateY(-90deg) translateZ(calc(var(--size-cube) / 2)); }
+.cube .five { transform: rotateX( 90deg) translateZ(calc(var(--size-cube) / 2)); }
+.cube .six { transform: rotateY(180deg) translateZ(calc(var(--size-cube) / 2)); }
+
+/*============-============-============-============
+                        BUTTONS
+==============-============-============-==========*/
+
+.btn {
+    width: 100px;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    outline: none;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgba(50,50,50,0.2);
 }
