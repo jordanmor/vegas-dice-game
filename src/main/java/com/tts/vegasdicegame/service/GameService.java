@@ -1,6 +1,7 @@
 package com.tts.vegasdicegame.service;
 
 import com.tts.vegasdicegame.model.GameResponse;
+import com.tts.vegasdicegame.model.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +26,24 @@ public class GameService {
         return gameResponse;
     }
 
-    public GameResponse playGame() {
+    public GameResponse playGame(String action) {
+        // Take the following action if user ends game (cashes out)
+        if(action != null && action.equals("end")) {
+            int playerNumber = playerService.findLatestPlayerNumber() + 1;
+            Player player = new Player(1, playerNumber, gameResponse.getPlayerName(), gameResponse.getScore());
+            playerService.save(player);
+            gameResponse.setNewGame(true);
+            return null;
+        }
+
+        // User's score reaches 0
         if(gameResponse.getScore() == 0) {
             gameResponse.setMessage("Game Over");
             gameResponse.setNewGame(true);
             return gameResponse;
         }
 
+        // New Game
         if(gameResponse.isNewGame()) {
             startNewGame();
         }

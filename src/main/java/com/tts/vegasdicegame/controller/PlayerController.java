@@ -14,11 +14,6 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
-    @GetMapping(value = "/")
-    public String welcomeMessage() {
-        return "Welcome to the Vegas Dice Game API!";
-    }
-
     @GetMapping(value = "/players")
     public List<Player> getPlayers() {
         return playerService.findAll();
