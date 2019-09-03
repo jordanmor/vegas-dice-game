@@ -8,6 +8,12 @@
     --color-cube-face: rgba(245, 241, 241, 0.95);
 
     --size-cube: 80px;
+
+    /*Rotate cube 3 times and end animation with a slight tilt */
+    --cube-deg-0: calc(360deg * 2 + 4deg);
+    --cube-deg-90: calc(360deg * 2 + 94deg);
+    --cube-deg-180: calc(360deg * 2 + 184deg);
+    --cube-deg-270: calc(360deg * 2 + 274deg);
 }
 
 /*============-============-============-============
@@ -88,6 +94,95 @@ main {
 .cube .four { transform: rotateY(-90deg) translateZ(calc(var(--size-cube) / 2)); }
 .cube .five { transform: rotateX( 90deg) translateZ(calc(var(--size-cube) / 2)); }
 .cube .six { transform: rotateY(180deg) translateZ(calc(var(--size-cube) / 2)); }
+
+.roll-one {
+    animation: rollOne 2s ease-out forwards;
+}
+
+.roll-two {
+    animation: rollTwo 2s ease-out forwards;  
+}
+
+.roll-three {
+    animation: rollThree 2s ease-out forwards;  
+}
+
+.roll-four {
+    animation: rollFour 2s ease-out forwards;  
+}
+
+.roll-five {
+    animation: rollFive 2s ease-out forwards;  
+}
+
+.roll-six {
+    animation: rollSix 2s ease-out forwards;  
+}
+
+/*
+Map for ending animation on a particular cube face
+rotateX, rotateY
+1 = 0, 0
+2 = 90, 0
+3 = 0, 270
+4 = 0, 90
+5 = 270, 0
+6 = 0, 180
+*/
+
+@keyframes rollOne {
+    0% {
+      transform: translateZ(-100px) rotateX( 2deg) rotateY( 2deg);
+    }
+    100% {
+      transform: translateZ(-100px) rotateX(var(--cube-deg-0)) rotateY(var(--cube-deg-0));
+    }
+}
+  
+@keyframes rollTwo {
+    0% {
+      transform: translateZ(-100px) rotateX( 2deg) rotateY( 2deg);
+    }
+    100% {
+      transform: translateZ(-100px) rotateX(var(--cube-deg-90)) rotateY(var(--cube-deg-0));
+    }
+}
+  
+@keyframes rollThree {
+    0% {
+      transform: translateZ(-100px) rotateX( 2deg) rotateY( 2deg);
+    }
+    100% {
+      transform: translateZ(-100px) rotateX(var(--cube-deg-0)) rotateY(var(--cube-deg-270));
+    }
+}
+  
+@keyframes rollFour {
+    0% {
+      transform: translateZ(-100px) rotateX( 2deg) rotateY( 2deg);
+    }
+    100% {
+      transform: translateZ(-100px) rotateX(var(--cube-deg-0)) rotateY(var(--cube-deg-90));
+    }
+}
+  
+@keyframes rollFive {
+    0% {
+      transform: translateZ(-100px) rotateX( 2deg) rotateY( 2deg);
+    }
+    100% {
+      transform: translateZ(-100px) rotateX(var(--cube-deg-270)) rotateY(var(--cube-deg-0));
+    }
+}
+  
+@keyframes rollSix {
+    0% {
+      transform: translateZ(-100px) rotateX( 2deg) rotateY( 2deg);
+    }
+    100% {
+      transform: translateZ(-100px) rotateX(var(--cube-deg-0)) rotateY(var(--cube-deg-180));
+    }
+}
 
 /*============-============-============-============
                         BUTTONS
