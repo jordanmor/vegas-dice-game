@@ -14,16 +14,13 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping(value = "/")
-    public String playGame() {
+    public String welcome() {
         return "Welcome";
     }
 
     @GetMapping(value = "/play")
-    public GameResponse playGameWithQuery(@RequestParam(required = false) String action) {
+    public GameResponse playGame(@RequestParam(required = false) String action) {
         gameService.playGame(action);
-        if(action != null  && action.equals("end")) {
-            return null;
-        }
         return gameService.getGameResponse();
     }
 
