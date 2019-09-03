@@ -4,6 +4,13 @@ const dieOne = document.getElementById('dieOne');
 const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2500;
 
+// Start modal on page load
+$('#modal').modal({
+  show: true,
+  keyboard: false,
+  backdrop: 'static'
+});
+
 $('#roll').on('click', function() {
   const regex = /roll-\w+/;
   $(this).css({ 
