@@ -4,12 +4,25 @@ const dieOne = document.getElementById('dieOne');
 const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2500;
 
-// Start modal on page load
-// $('#modal').modal({
-//   show: true,
-//   keyboard: false,
-//   backdrop: 'static'
-// });
+const setPlayerName = (messageOne, messageTwo, buttonText) => {
+  fetch('http://localhost:8080/latest-player-number')
+  .then(response => response.json())
+  .then(latestPlayerNumber => {
+    const currentPlayerNumber = latestPlayerNumber + 1;
+    $('.playerName').text(`Player${currentPlayerNumber}`);
+    $('#modalMessageMain').text(`${messageOne} ${currentPlayerNumber}!`);
+    $('#modalMessageSecondary').text(messageTwo);
+    $('#modalBtn').text(buttonText);
+    // Start modal on page load after player number fetched
+    $('#modal').modal({
+      show: true,
+      keyboard: false,
+      backdrop: 'static'
+    });
+  });
+}
+
+setPlayerName('Welcome Player', 'Get ready to crush it playing Vegas Dice!', 'Start Game');
 
 $('#roll').on('click', function() {
 
@@ -49,6 +62,32 @@ $('#roll').on('click', function() {
       // Game info also updates after the dice stop rolling
       $('#credits').text(data.score);
       $('#point').text(data.point);
+      if(data.message != null) {
+        $('#playerMessage').text(data.message);
+      } else {
+        $('#playerMessage').text('Roll!');
+      }
     }, animationDuration);
+  });
+});
+
+$('#cashOut').on('click', function() {
+
+setPlayerName('Thanks for playing Player ', 'Would you like to play again?', 'Play Again');
+
+$('#modal').modal({
+  show: true,
+  keyboard: false,
+  backdrop: 'static'
+});
+
+fetch('http://localhost:8080/play?action=end')
+  .then(() => {
+    fetch('http://localhost:8080/latest-player-number')
+    .then(response => response.json())
+    .then(latestPlayerNumber => {
+      const currentPlayerNumber = latestPlayerNumber + 1;
+      $('.playerName').text(`Player${currentPlayerNumber}`);
+    })
   });
 });

@@ -12,8 +12,9 @@
 <body>
     <h1 class="mb-3">Vegas Dice Game</h1>
 
-    <div class="container container-above-table d-flex justify-content-center">
-        <h2>Player1</h2>
+    <div class="container container-above-table">
+        <h2 class="playerName mb-3">Player</h2>
+        <h2 id="playerMessage" class="player-message">Roll!</h2>
         <button id="cashOut" class="btn-cash-out">Cash Out</button>
     </div>
     <main class="container">
@@ -73,11 +74,11 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <h3>Welcome Player1!</h3>
-                <p>Get ready to crush it playing Vegas Dice!</p>
+                <h3 id="modalMessageMain">Welcome</h3>
+                <p id="modalMessageSecondary">Get ready to crush it playing Vegas Dice!</p>
             </div>
             <div class="modal-footer d-flex justify-content-center border-top-0">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Start Game</button>
+                <button type="button" id="modalBtn" class="btn btn-secondary" data-dismiss="modal">Start Game</button>
             </div>
             </div>
         </div>

@@ -58,6 +58,10 @@ table td {
     width: 200px;
 }
 
+.player-message {
+    font-size: 1.6rem;
+}
+
 /*============-============-============-============
                          CUBES
 ==============-============-============-==========*/
@@ -212,6 +216,9 @@ rotateX, rotateY
 
 .btn-cash-out {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     right: 0;
     top: 42px;
     font-size: 1.2rem;
