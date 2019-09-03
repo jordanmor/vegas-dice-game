@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class GameResponse {
 
+    private String playerName;
     private int dieOne;
     private int dieTwo;
     private int sum;
@@ -16,6 +17,7 @@ public class GameResponse {
 
     public GameResponse() {
         newGame = true;
+        newTurn = true;
         score = 100;
     }
 }

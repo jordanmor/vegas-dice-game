@@ -16,7 +16,8 @@ public class PlayerService {
     PlayerRepository playerRepository;
 
     public List<Player> findPlayersWithHighestScores() {
-        return playerRepository.findAllByOrderByHighScoreDesc()
+        return playerRepository
+                .findAllByOrderByHighScoreDesc()
                 .stream()
                 .limit(LIMIT)
                 .collect(Collectors.toList());
@@ -24,5 +25,12 @@ public class PlayerService {
 
     public List<Player> findAll() {
         return playerRepository.findAll();
+    }
+
+    public int findLatestPlayerNumber() {
+        return playerRepository
+                .findAllByOrderByPlayerNumberDesc()
+                .get(0)
+                .getPlayerNumber();
     }
 }

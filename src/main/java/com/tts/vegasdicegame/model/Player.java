@@ -18,6 +18,9 @@ public class Player {
     @Column(name = "player_id")
     private long id;
 
+    @Column(name = "player_number")
+    private int playerNumber;
+
     private String name;
 
     @Column(name = "high_score")

@@ -1,6 +1,7 @@
 package com.tts.vegasdicegame.service;
 
 import com.tts.vegasdicegame.model.GameResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,6 +14,9 @@ public class GameService {
     private GameResponse gameResponse = new GameResponse();
     private int gamePoint;
 
+    @Autowired
+    private PlayerService playerService;
+
     private GameResponse roll() {
         gameResponse.setDieOne((int) (Math.random() * 6) + 1);
         gameResponse.setDieTwo((int) (Math.random() * 6) + 1);
@@ -23,6 +27,10 @@ public class GameService {
 
     public GameResponse playGame() {
         if(gameResponse.isNewGame()) {
+            startNewGame();
+        }
+
+        if(gameResponse.isNewTurn()) {
             gameResponse.setMessage(null);
             roll();
             gamePoint = gameResponse.getPoint();
@@ -49,6 +57,12 @@ public class GameService {
             }
             gameResponse.setNewGame(false);
             return gameResponse;
+    }
+
+    private void startNewGame() {
+        gameResponse.setNewGame(false);
+        gameResponse.setPlayerName("Player" + (playerService.findLatestPlayerNumber() + 1));
+        gameResponse.setMessage(null);
     }
 
     public GameResponse getGameResponse() {
