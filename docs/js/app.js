@@ -12,33 +12,40 @@ $('#modal').modal({
 });
 
 $('#roll').on('click', function() {
-  const regex = /roll-\w+/;
-  $(this).css({ 
-    "pointer-events":"none",
-    "cursor":"none"
-  });
 
-  $('.die-one').removeClass(function(i, className) {
-    return className.match(regex);
-  });
-  // Restart animation by triggering reflow
-  // Current use case assures die will roll if the same number comes up again
-  void dieOne.offsetWidth;
-  $('.die-one').addClass(rolls[Math.floor(Math.random() * 6)]);
+  fetch('http://localhost:8080/play')
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
 
-  $('.die-two').removeClass(function(i, className) {
-    return className.match(regex);
-  });
-  
-  // restart animation by triggering reflow
-  void dieTwo.offsetWidth;
-  $('.die-two').addClass(rolls[Math.floor(Math.random() * 6)]);
-
-  // setTimeout ensures button cannot be pressed again until animation sequence ends
-  window.setTimeout(() => {
+    const regex = /roll-\w+/;
     $(this).css({ 
-      "pointer-events":"auto",
-      "cursor":"pointer"
+      "pointer-events":"none",
+      "cursor":"none"
     });
-  }, animationDuration);
+  
+    $('.die-one').removeClass(function(i, className) {
+      return className.match(regex);
+    });
+    // Restart animation by triggering reflow
+    // Current use case assures die will roll if the same number comes up again
+    void dieOne.offsetWidth;
+    $('.die-one').addClass(rolls[data.dieOne - 1]);
+  
+    $('.die-two').removeClass(function(i, className) {
+      return className.match(regex);
+    });
+    
+    // restart animation by triggering reflow
+    void dieTwo.offsetWidth;
+    $('.die-two').addClass(rolls[data.dieTwo - 1]);
+  
+    // setTimeout ensures button cannot be pressed again until animation sequence ends
+    window.setTimeout(() => {
+      $(this).css({ 
+        "pointer-events":"auto",
+        "cursor":"pointer"
+      });
+    }, animationDuration);
+  });
 });
