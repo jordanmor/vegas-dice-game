@@ -25,10 +25,4 @@ public class PlayerController {
     public List<Player> getHighestScorePlayers() {
         return playerService.findPlayersWithHighestScores();
     }
-
-    @CrossOrigin
-    @GetMapping(value = "/latest-player-number")
-    public int getLatestPlayerNumber() {
-        return playerService.findLatestPlayerNumber();
-    }
 }
