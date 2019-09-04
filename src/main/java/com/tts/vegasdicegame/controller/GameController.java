@@ -14,13 +14,8 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-    @GetMapping(value = "/")
-    public String welcome() {
-        return "Welcome";
-    }
-
     @CrossOrigin
-    @GetMapping(value = "/play")
+    @GetMapping(value = "/")
     public GameResponse playGame(@RequestParam(required = false) String action) {
         gameService.playGame(action);
         return gameService.getGameResponse();

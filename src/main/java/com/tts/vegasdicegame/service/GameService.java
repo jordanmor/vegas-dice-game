@@ -17,6 +17,32 @@ public class GameService {
     @Autowired
     private PlayerService playerService;
 
+    public GameResponse getGameResponse() {
+        return gameResponse;
+    }
+
+    public GameResponse playGame(String action) {
+
+        if(action != null && action.equals("start")) {
+            startNewGame();
+        }
+        if(action != null && action.equals("play")) {
+            return playNextRound();
+        } else if(action != null && action.equals("end")) {
+            return endGame();
+        }
+
+        return gameResponse;
+    }
+
+    private void startNewGame() {
+        gameResponse.setNewGame(false);
+        gameResponse.setPlayerName("Player" + (playerService.findLatestPlayerNumber() + 1));
+        gameResponse.setMessage(null);
+        gameResponse.setPoint(0);
+        gameResponse.setScore(100);
+    }
+
     private GameResponse roll() {
         gameResponse.setDieOne((int) (Math.random() * 6) + 1);
         gameResponse.setDieTwo((int) (Math.random() * 6) + 1);
@@ -24,26 +50,12 @@ public class GameService {
         return gameResponse;
     }
 
-    public GameResponse playGame(String action) {
-        // Take the following action if user ends game (cashes out)
-        if(action != null && action.equals("end")) {
-            int playerNumber = playerService.findLatestPlayerNumber() + 1;
-            Player player = new Player(1, playerNumber, gameResponse.getPlayerName(), gameResponse.getScore());
-            playerService.save(player);
-            gameResponse.setNewGame(true);
-            return null;
-        }
-
+    private GameResponse playNextRound() {
         // User's score reaches 0
         if(gameResponse.getScore() == 0) {
             gameResponse.setMessage("Game Over");
             gameResponse.setNewGame(true);
             return gameResponse;
-        }
-
-        // New Game
-        if(gameResponse.isNewGame()) {
-            startNewGame();
         }
 
         // Checks if point is set to determine if starting new round
@@ -59,24 +71,16 @@ public class GameService {
                 return gameResponse;
             }
         } else {
-                roll();
-                if (gameResponse.getSum() == gameResponse.getPoint()) {
-                    completeRound(GameEnum.WON);
-                    return gameResponse;
-                } else if (gameResponse.getSum() == 7) {
-                    completeRound(GameEnum.LOST);
-                    return gameResponse;
-                }
+            roll();
+            if (gameResponse.getSum() == gameResponse.getPoint()) {
+                completeRound(GameEnum.WON);
+                return gameResponse;
+            } else if (gameResponse.getSum() == 7) {
+                completeRound(GameEnum.LOST);
+                return gameResponse;
             }
+        }
         return gameResponse;
-    }
-
-    private void startNewGame() {
-        gameResponse.setNewGame(false);
-        gameResponse.setPlayerName("Player" + (playerService.findLatestPlayerNumber() + 1));
-        gameResponse.setMessage(null);
-        gameResponse.setPoint(0);
-        gameResponse.setScore(100);
     }
 
     private void completeRound(GameEnum result) {
@@ -90,7 +94,11 @@ public class GameService {
         }
     }
 
-    public GameResponse getGameResponse() {
+    private GameResponse endGame() {
+        int playerNumber = playerService.findLatestPlayerNumber() + 1;
+        Player player = new Player(1, playerNumber, gameResponse.getPlayerName(), gameResponse.getScore());
+        playerService.save(player);
+        gameResponse.setNewGame(true);
         return gameResponse;
     }
 }
