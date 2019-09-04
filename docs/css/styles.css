@@ -58,6 +58,10 @@ table td {
     width: 200px;
 }
 
+table td {
+    font-size: 1.4rem;
+}
+
 .player-message {
     font-size: 1.6rem;
 }
@@ -220,7 +224,7 @@ rotateX, rotateY
     justify-content: center;
     align-items: center;
     right: 0;
-    top: 42px;
+    top: 80px;
     font-size: 1.2rem;
     background-color: yellow;
     border: 1px solid #333;
