@@ -2,51 +2,80 @@
 const localHost = 'http://localhost:8080';
 // For production and deployment
 const herokuHost = 'https://vegas-dice-game.herokuapp.com';
-const host = localHost;
+const host = herokuHost;
 
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
 
 const dieOne = document.getElementById('dieOne');
 const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2500;
+let playerName = 'Player';
 
-const setPlayerName = (messageOne, messageTwo, buttonText) => {
-  fetch(`${host}/latest-player-number`)
+init();
+
+// One page load or refresh
+function init() {
+
+  fetch(`${host}`)
   .then(response => response.json())
-  .then(latestPlayerNumber => {
-    const currentPlayerNumber = latestPlayerNumber + 1;
-    $('.playerName').text(`Player${currentPlayerNumber}`);
-    $('#modalMessageMain').text(`${messageOne} ${currentPlayerNumber}!`);
-    $('#modalMessageSecondary').text(messageTwo);
-    $('#modalBtn').text(buttonText);
-    // Start modal on page load after player number fetched
-    $('#modal').modal({
-      show: true,
-      keyboard: false,
-      backdrop: 'static'
-    });
+  .then(gameData => {
+    console.log(gameData);
+    playerName = gameData.playerName;
+    $('.playerName').text(gameData.playerName);
+    setGameInfo(gameData);
+    if(gameData.newGame == true) {
+      // Start modal on page load after player number fetched
+      setModalInfo('Welcome Player', 'Get ready to crush it playing Vegas Dice!', 'Start Game');
+      $('#modal').modal({
+        show: true,
+        keyboard: false,
+        backdrop: 'static'
+      });
+    }
+  });
+
+  fetch(`${host}/highest-scores`)
+    .then(response => response.json())
+    .then(players => {
+      html = '';
+      for(let player of players) {
+        html += `<tr><td>${player.name}</td><td>${player.highScore}</td></tr>`;
+      }
+      $('#highScores').html(html);
   });
 }
 
-setPlayerName('Welcome Player', 'Get ready to crush it playing Vegas Dice!', 'Start Game');
+function setModalInfo (messageOne, messageTwo, buttonText) {
+    $('#modalMessageMain').text(`${messageOne} ${playerName}!`);
+    $('#modalMessageSecondary').text(messageTwo);
+    $('#modalBtn').text(buttonText);
+}
 
-fetch(`${host}/highest-scores`)
-  .then(response => response.json())
-  .then(players => {
-    html = '';
-    for(let player of players) {
-      html += `<tr><td>${player.name}</td><td>${player.highScore}</td></tr>`;
-      console.log(player);
-    }
-    $('#highScores').html(html);
+function setGameInfo (gameData) {
+  $('#credits').text(gameData.score);
+  $('#point').text(gameData.point);
+  if(gameData.message != null) {
+    $('#playerMessage').text(gameData.message);
+  } else {
+    $('#playerMessage').text('Roll!');
+  }
+}
+
+// Start new game
+$('#modalBtn').on('click', function() {
+  fetch(`${host}/?action=start`)
+  .then(() => {
+    init();
+  });
 });
 
+// Roll the Dice
 $('#roll').on('click', function() {
 
-  fetch(`${host}/play`)
+  fetch(`${host}/?action=play`)
   .then(response => response.json())
-  .then(data => {
-    console.log(data);
+  .then(gameData => {
+    // console.log(gameData);
 
     const regex = /roll-\w+/;
     $(this).css({ 
@@ -60,7 +89,7 @@ $('#roll').on('click', function() {
     // Restart animation by triggering reflow
     // Current use case assures die will roll if the same number comes up again
     void dieOne.offsetWidth;
-    $('.die-one').addClass(rolls[data.dieOne - 1]);
+    $('.die-one').addClass(rolls[gameData.dieOne - 1]);
   
     $('.die-two').removeClass(function(i, className) {
       return className.match(regex);
@@ -68,7 +97,7 @@ $('#roll').on('click', function() {
     
     // restart animation by triggering reflow
     void dieTwo.offsetWidth;
-    $('.die-two').addClass(rolls[data.dieTwo - 1]);
+    $('.die-two').addClass(rolls[gameData.dieTwo - 1]);
   
     // setTimeout ensures button cannot be pressed again until animation sequence ends
     window.setTimeout(() => {
@@ -77,34 +106,20 @@ $('#roll').on('click', function() {
         "cursor":"pointer"
       });
       // Game info also updates after the dice stop rolling
-      $('#credits').text(data.score);
-      $('#point').text(data.point);
-      if(data.message != null) {
-        $('#playerMessage').text(data.message);
-      } else {
-        $('#playerMessage').text('Roll!');
-      }
+      setGameInfo(gameData);
     }, animationDuration);
   });
 });
 
 $('#cashOut').on('click', function() {
 
-setPlayerName('Thanks for playing Player ', 'Would you like to play again?', 'Play Again');
+  setModalInfo('Thanks for playing', 'Would you like to play again?', 'Play Again');
 
-$('#modal').modal({
-  show: true,
-  keyboard: false,
-  backdrop: 'static'
-});
-
-fetch(`${host}/play?action=end`)
-  .then(() => {
-    fetch(`${host}/latest-player-number`)
-    .then(response => response.json())
-    .then(latestPlayerNumber => {
-      const currentPlayerNumber = latestPlayerNumber + 1;
-      $('.playerName').text(`Player${currentPlayerNumber}`);
-    })
+  $('#modal').modal({
+    show: true,
+    keyboard: false,
+    backdrop: 'static'
   });
+
+  fetch(`${host}/?action=end`);
 });
