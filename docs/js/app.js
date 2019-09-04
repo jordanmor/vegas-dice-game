@@ -1,5 +1,5 @@
-const localHost = 'localhost:8080';
-const herokuHost = 'vegas-dice-game.herokuapp.com';
+const localHost = 'http://localhost:8080';
+const herokuHost = 'https://vegas-dice-game.herokuapp.com';
 const host = herokuHost;
 
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
@@ -9,7 +9,7 @@ const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2500;
 
 const setPlayerName = (messageOne, messageTwo, buttonText) => {
-  fetch(`http://${host}/latest-player-number`)
+  fetch(`${host}/latest-player-number`)
   .then(response => response.json())
   .then(latestPlayerNumber => {
     const currentPlayerNumber = latestPlayerNumber + 1;
@@ -30,7 +30,7 @@ setPlayerName('Welcome Player', 'Get ready to crush it playing Vegas Dice!', 'St
 
 $('#roll').on('click', function() {
 
-  fetch(`http://${host}/play`)
+  fetch(`${host}/play`)
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -85,9 +85,9 @@ $('#modal').modal({
   backdrop: 'static'
 });
 
-fetch(`http://${host}/play?action=end`)
+fetch(`${host}/play?action=end`)
   .then(() => {
-    fetch(`http://${host}/latest-player-number`)
+    fetch(`${host}/latest-player-number`)
     .then(response => response.json())
     .then(latestPlayerNumber => {
       const currentPlayerNumber = latestPlayerNumber + 1;
