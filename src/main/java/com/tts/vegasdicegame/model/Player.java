@@ -25,4 +25,9 @@ public class Player {
 
     @Column(name = "high_score")
     private int highScore;
+
+    public Player(int playerNumber, String name) {
+        this.playerNumber = playerNumber;
+        this.name = name;
+    }
 }

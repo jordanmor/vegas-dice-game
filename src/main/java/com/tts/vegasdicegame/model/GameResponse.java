@@ -1,12 +1,11 @@
 package com.tts.vegasdicegame.model;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
 public class GameResponse {
 
-    private String playerName;
+    private Player player;
     private int dieOne;
     private int dieTwo;
     private int sum;

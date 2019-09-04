@@ -23,9 +23,10 @@ public class GameService {
 
     public GameResponse playGame(String action) {
 
-        if(action != null && action.equals("start")) {
+        if(gameResponse.isNewGame() == true) {
             startNewGame();
         }
+
         if(action != null && action.equals("play")) {
             return playNextRound();
         } else if(action != null && action.equals("end")) {
@@ -35,12 +36,19 @@ public class GameService {
         return gameResponse;
     }
 
+    private void createNewPlayer() {
+        int playerNumber = playerService.findLatestPlayerNumber() + 1;
+        String playerName = "Player" + playerNumber;
+        Player player = new Player(playerNumber, playerName);
+        gameResponse.setPlayer(player);
+    }
+
     private void startNewGame() {
-        gameResponse.setNewGame(false);
-        gameResponse.setPlayerName("Player" + (playerService.findLatestPlayerNumber() + 1));
+        createNewPlayer();
         gameResponse.setMessage(null);
         gameResponse.setPoint(0);
         gameResponse.setScore(100);
+        gameResponse.setNewGame(false);
     }
 
     private GameResponse roll() {
@@ -95,9 +103,8 @@ public class GameService {
     }
 
     private GameResponse endGame() {
-        int playerNumber = playerService.findLatestPlayerNumber() + 1;
-        Player player = new Player(1, playerNumber, gameResponse.getPlayerName(), gameResponse.getScore());
-        playerService.save(player);
+        gameResponse.getPlayer().setHighScore(gameResponse.getScore());
+        playerService.save(gameResponse.getPlayer());
         gameResponse.setNewGame(true);
         return gameResponse;
     }
