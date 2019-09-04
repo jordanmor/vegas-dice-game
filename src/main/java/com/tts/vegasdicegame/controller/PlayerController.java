@@ -20,6 +20,7 @@ public class PlayerController {
         return playerService.findAll();
     }
 
+    @CrossOrigin
     @GetMapping(value = "/highest-scores")
     public List<Player> getHighestScorePlayers() {
         return playerService.findPlayersWithHighestScores();

@@ -52,13 +52,62 @@ button:focus {
     outline: none;
 }
 
-table th,
-table td {
+/*============-============-============-============
+                        BUTTONS
+==============-============-============-==========*/
+
+.btn-roll,
+.btn-cash-out {
+    width: 130px;
+    height: 50px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    outline: none;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-roll:hover {
+    background-color: rgba(50,50,50,0.2);
+}
+
+.btn-roll {
+    position: absolute;
+    bottom: 180px;
+}
+
+.container-above-table {
+    position: relative;
+}
+
+.btn-cash-out {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    font-size: 1.2rem;
+    background-color: yellow;
+    border: 1px solid #333;
+    transition: .3s ease-in-out;
+}
+
+.btn-cash-out:hover {
+    background-color: gold;
+}
+
+/*============-============-============-============
+                      GAME TABLES
+==============-============-============-==========*/
+
+.game-info table th,
+.game-info table td {
     text-align: center;
     width: 200px;
 }
 
-table td {
+.game-info table td {
     font-size: 1.4rem;
 }
 
@@ -193,44 +242,4 @@ rotateX, rotateY
     100% {
       transform: translateZ(-100px) rotateX(var(--cube-deg-0)) rotateY(var(--cube-deg-180));
     }
-}
-
-/*============-============-============-============
-                        BUTTONS
-==============-============-============-==========*/
-
-.btn-roll,
-.btn-cash-out {
-    width: 130px;
-    height: 50px;
-    border-radius: 4px;
-    font-size: 1.4rem;
-    outline: none;
-    transition: .3s ease-in-out;
-    cursor: pointer;
-}
-
-.btn-roll:hover {
-    background-color: rgba(50,50,50,0.2);
-}
-
-.container-above-table {
-    position: relative;
-}
-
-.btn-cash-out {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    right: 0;
-    top: 80px;
-    font-size: 1.2rem;
-    background-color: yellow;
-    border: 1px solid #333;
-    transition: .3s ease-in-out;
-}
-
-.btn-cash-out:hover {
-    background-color: gold;
 }

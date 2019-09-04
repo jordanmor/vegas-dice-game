@@ -1,6 +1,8 @@
+// For testing and development
 const localHost = 'http://localhost:8080';
+// For production and deployment
 const herokuHost = 'https://vegas-dice-game.herokuapp.com';
-const host = herokuHost;
+const host = localHost;
 
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
 
@@ -27,6 +29,17 @@ const setPlayerName = (messageOne, messageTwo, buttonText) => {
 }
 
 setPlayerName('Welcome Player', 'Get ready to crush it playing Vegas Dice!', 'Start Game');
+
+fetch(`${host}/highest-scores`)
+  .then(response => response.json())
+  .then(players => {
+    html = '';
+    for(let player of players) {
+      html += `<tr><td>${player.name}</td><td>${player.highScore}</td></tr>`;
+      console.log(player);
+    }
+    $('#highScores').html(html);
+});
 
 $('#roll').on('click', function() {
 

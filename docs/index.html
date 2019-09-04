@@ -17,51 +17,67 @@
         <h2 id="playerMessage" class="player-message">Roll!</h2>
         <button id="cashOut" class="btn-cash-out">Cash Out</button>
     </div>
-    <main class="container">
-        <div class="cube-container">
-            <div id="dieOne" class="cube die-one">
-                <div class="side one">1</div>
-                <div class="side two">2</div>
-                <div class="side three">3</div>
-                <div class="side four">4</div>
-                <div class="side five">5</div>
-                <div class="side six">6</div>
-            </div>
-        </div>
-        
-        <div class="cube-container">
-            <div id="dieTwo" class="cube die-two">
-                <div class="side one">1</div>
-                <div class="side two">2</div>
-                <div class="side three">3</div>
-                <div class="side four">4</div>
-                <div class="side five">5</div>
-                <div class="side six">6</div>
-            </div>
-        </div>
-    </main>
 
-    <div class="container game-info">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Credits</th>
-                <th scope="col">Point</th>
-                <th scope="col">Bet Amount</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td id="credits">100</td>
-                    <td id="point">5</td>
-                    <td id="bet">10</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <main class="container">
+                    <div class="cube-container">
+                        <div id="dieOne" class="cube die-one">
+                            <div class="side one">1</div>
+                            <div class="side two">2</div>
+                            <div class="side three">3</div>
+                            <div class="side four">4</div>
+                            <div class="side five">5</div>
+                            <div class="side six">6</div>
+                        </div>
+                    </div>
+                    
+                    <div class="cube-container">
+                        <div id="dieTwo" class="cube die-two">
+                            <div class="side one">1</div>
+                            <div class="side two">2</div>
+                            <div class="side three">3</div>
+                            <div class="side four">4</div>
+                            <div class="side five">5</div>
+                            <div class="side six">6</div>
+                        </div>
+                    </div>
 
-    <div class="container d-flex justify-content-center">
-        <button id="roll" class="btn-roll">Roll</button>
+                    <button id="roll" class="btn-roll">Roll</button>
+                </main>
+
+                <div class="container game-info">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Credits</th>
+                            <th scope="col">Point</th>
+                            <th scope="col">Bet Amount</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="credits">100</td>
+                                <td id="point">5</td>
+                                <td id="bet">10</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+        <div class="col-4">
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Player</th>
+                            <th scope="col">High Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="highScores">
+                    </tbody>
+            </table>
+        </div>
     </div>
       
     <!-- Modal -->
