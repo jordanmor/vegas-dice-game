@@ -20,39 +20,46 @@
                      GLOBAL STYLES
 ==============-============-============-==========*/
 
-html {
-    box-sizing: border-box;
-}
-*, *:before, *:after {
-    box-sizing: inherit;
+body {
+    color: var(--color-primary);
+    background-color: #fafafa;
 }
 
-html,
-body,
 main {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-html,
-body {
-    flex-direction: column;
     width: 100%;
-    height: 100%;
-}
-
-body {
-    color: var(--color-primary);
-}
-
-main {
-    width: 100%;
-    height: 60%;
+    height: 250px;
     background-image: url('../img/craps-table.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+button:focus {
+    outline: none;
+}
+
+table th,
+table td {
+    text-align: center;
+    width: 200px;
+}
+
+.player-message {
+    font-size: 1.6rem;
 }
 
 /*============-============-============-============
@@ -188,8 +195,9 @@ rotateX, rotateY
                         BUTTONS
 ==============-============-============-==========*/
 
-.btn {
-    width: 100px;
+.btn-roll,
+.btn-cash-out {
+    width: 130px;
     height: 50px;
     border-radius: 4px;
     font-size: 1.4rem;
@@ -198,6 +206,27 @@ rotateX, rotateY
     cursor: pointer;
 }
 
-.btn:hover {
+.btn-roll:hover {
     background-color: rgba(50,50,50,0.2);
+}
+
+.container-above-table {
+    position: relative;
+}
+
+.btn-cash-out {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 42px;
+    font-size: 1.2rem;
+    background-color: yellow;
+    border: 1px solid #333;
+    transition: .3s ease-in-out;
+}
+
+.btn-cash-out:hover {
+    background-color: gold;
 }

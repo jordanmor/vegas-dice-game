@@ -13,7 +13,6 @@ public class GameService {
     private static final List<Integer> WINS = Arrays.asList(7, 11);
     private static final List<Integer> LOSES = Arrays.asList(2, 3, 12);
     private GameResponse gameResponse = new GameResponse();
-    private int gamePoint;
 
     @Autowired
     private PlayerService playerService;
@@ -22,7 +21,6 @@ public class GameService {
         gameResponse.setDieOne((int) (Math.random() * 6) + 1);
         gameResponse.setDieTwo((int) (Math.random() * 6) + 1);
         gameResponse.setSum(gameResponse.getDieOne() + gameResponse.getDieTwo());
-        gameResponse.setPoint(gameResponse.getSum());
         return gameResponse;
     }
 
@@ -52,7 +50,7 @@ public class GameService {
         if(gameResponse.getPoint() == 0) {
             gameResponse.setMessage(null);
             roll();
-            gamePoint = gameResponse.getPoint();
+            gameResponse.setPoint(gameResponse.getSum());
             if (WINS.contains(gameResponse.getPoint())) {
                 completeRound(GameEnum.WON);
                 return gameResponse;
@@ -62,10 +60,10 @@ public class GameService {
             }
         } else {
                 roll();
-                if (gameResponse.getPoint() == gamePoint) {
+                if (gameResponse.getSum() == gameResponse.getPoint()) {
                     completeRound(GameEnum.WON);
                     return gameResponse;
-                } else if (gameResponse.getPoint() == 7) {
+                } else if (gameResponse.getSum() == 7) {
                     completeRound(GameEnum.LOST);
                     return gameResponse;
                 }
