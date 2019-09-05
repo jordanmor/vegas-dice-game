@@ -1,5 +1,4 @@
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
-
 const dieOne = document.getElementById('dieOne');
 const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2500;
@@ -10,6 +9,9 @@ init();
 
 // One page load or refresh
 function init() {
+
+  // Add SVG die faces to cubes
+  populateCubeFaces();
 
   fetch(`${host}`)
   .then(response => response.json())
@@ -44,6 +46,15 @@ function setGameInfo (gameData) {
   } else {
     $('#playerMessage').text('Roll!');
   }
+}
+
+function populateCubeFaces() {
+  $('.side.one').html(dieFaceSvgs.faceOne);
+  $('.side.two').html(dieFaceSvgs.faceTwo);
+  $('.side.three').html(dieFaceSvgs.faceThree);
+  $('.side.four').html(dieFaceSvgs.faceFour);
+  $('.side.five').html(dieFaceSvgs.faceFive);
+  $('.side.six').html(dieFaceSvgs.faceSix);
 }
 
 // Roll the Dice
