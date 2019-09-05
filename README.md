@@ -1,4 +1,4 @@
-## Vegas Dice Game
+## Vegas Dice Game | [Live Demo](https://jordanmor.github.io/vegas-dice-game/)
 
 Tech Talent Select Midpoint Project - up for review by The Hartford
 
