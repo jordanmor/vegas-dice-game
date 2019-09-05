@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vegas Dice Game</title>
-    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Open+Sans:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -15,16 +15,35 @@
         <h1 class="mb-3">Vegas Dice Game</h1>
     </header>
 
-    <div class="container container-above-table">
-        <h2 class="playerName mb-3">Player</h2>
-        <h2 id="playerMessage" class="player-message">Roll!</h2>
-        <button id="cashOut" class="btn-cash-out">Cash Out</button>
-    </div>
-
     <div class="container">
         <div class="row">
-            <div class="col-9">
-                <main class="container">
+            <div class="col-9 wrapper-game">
+
+                <div class="game-info">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Player Name</th>
+                            <th scope="col">Point</th>
+                            <th scope="col">Bet Amount</th>
+                            <th scope="col">Credits</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="playerName">100</td>
+                                <td id="point">0</td>
+                                <td id="bet">10</td>
+                                <td id="credits">100</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!-- End of game-info -->
+
+                <div class="cube-wrapper">
+                    
+                    <h2 class="player-message" id="playerMessage">Roll!</h2>
+                    
                     <div class="cube-container">
                         <div id="dieOne" class="cube die-one">
                             <div class="side one">1</div>
@@ -46,40 +65,28 @@
                             <div class="side six">6</div>
                         </div>
                     </div>
-
+                    <button id="cashOut" class="btn-cash-out">Cash Out</button>
                     <button id="roll" class="btn-roll">Roll</button>
-                </main>
 
-                <div class="container game-info">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Credits</th>
-                            <th scope="col">Point</th>
-                            <th scope="col">Bet Amount</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td id="credits">100</td>
-                                <td id="point">0</td>
-                                <td id="bet">10</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                </div> <!-- End of cube wrapper -->
+
+                <div class="instructions">
+                    <h3 class="text-center">---- Instructions ----</h3>
+                    <p>- Rolling 7 or 11 on the first try is a WIN</p>
+                    <p>- Rolling 2, 3 or 12 on the first try is a LOSE</p>
+                    <p>- Any other roll on the first try becomes the player's POINT</p>
+                    <p>- If a player rolled POINT, the player continues to roll until one of two things happens:</p>
+                    <p>- If a player has POINT and rolls the POINT again, it is a WIN</p>
+                    <p>- If a player has POINT and rolls 7, it is a LOST</p>
                 </div>
-        </div>
-        <div class="col-3">
-            <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Player</th>
-                            <th scope="col">High Score</th>
-                        </tr>
-                    </thead>
-                    <tbody id="highScores">
-                    </tbody>
-            </table>
+            </div>
+            <div class="col-3 wrapper-scores">
+                <h3>Top 10 Highest Scores</h3>
+                <table class="table">
+                        <tbody id="highScores">
+                        </tbody>
+                </table>
+            </div>
         </div>
     </div>
       

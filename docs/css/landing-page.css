@@ -21,14 +21,15 @@ h1 {
   position: relative;
   font-family: 'Luckiest Guy', cursive;
   font-size: 5.2rem;
+  color: #27ae60;
   letter-spacing: 1px;
   overflow: hidden;
   margin-bottom: 2.5rem;
 }
 
 .btn-outline-secondary {
-  color: #fdfdfd;
-  border-color: #fdfdfd;
+  color: #27ae60;
+  border-color: #27ae60;
   padding: 1rem 2rem;
   font-size: 1.4rem;
 }

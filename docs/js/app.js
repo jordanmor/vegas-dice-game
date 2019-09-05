@@ -2,7 +2,7 @@
 const localHost = 'http://localhost:8080';
 // For production and deployment
 const herokuHost = 'https://vegas-dice-game.herokuapp.com';
-const host = localHost;
+const host = herokuHost;
 
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
 
@@ -20,7 +20,6 @@ function init() {
   fetch(`${host}`)
   .then(response => response.json())
   .then(gameData => {
-    console.log(gameData);
     playerName = gameData.player.name;
     currentScore = gameData.score;
     $('.playerName').text(gameData.player.name);
@@ -60,7 +59,6 @@ $('#roll').on('click', function() {
   fetch(`${host}/?action=play`)
   .then(response => response.json())
   .then(gameData => {
-    console.log(gameData);
 
     const regex = /roll-\w+/;
     $(this).css({ 

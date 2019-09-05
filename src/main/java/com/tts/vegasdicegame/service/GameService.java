@@ -38,7 +38,7 @@ public class GameService {
 
     private void createNewPlayer() {
         int playerNumber = playerService.findLatestPlayerNumber() + 1;
-        String playerName = "Player" + playerNumber;
+        String playerName = "Player " + playerNumber;
         Player player = new Player(playerNumber, playerName);
         gameResponse.setPlayer(player);
     }
