@@ -21,8 +21,10 @@
 ==============-============-============-==========*/
 
 body {
+    font-family: 'Open Sans', sans-serif;
     color: var(--color-primary);
-    background-color: #fafafa;
+    background-color: #34495e;
+    color: #fdfdfd;
 }
 
 main {
@@ -38,9 +40,11 @@ main {
 }
 
 h1 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3rem;
+    letter-spacing: 1px;
     text-align: center;
-    font-size: 2rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 h2 {
@@ -48,13 +52,19 @@ h2 {
     font-size: 1.4rem;
 }
 
-button:focus {
-    outline: none;
+.modal-content {
+    padding: 2.5rem 1rem;
+    color: #333;
 }
+
 
 /*============-============-============-============
                         BUTTONS
 ==============-============-============-==========*/
+
+button:focus {
+    outline: none;
+}
 
 .btn-roll,
 .btn-cash-out {
@@ -68,7 +78,7 @@ button:focus {
 }
 
 .btn-roll:hover {
-    background-color: rgba(50,50,50,0.2);
+    background-color: #aaa;
 }
 
 .btn-roll {
@@ -88,13 +98,13 @@ button:focus {
     right: 0;
     top: 0;
     font-size: 1.2rem;
-    background-color: yellow;
+    background-color: #fdfdfd;
     border: 1px solid #333;
     transition: .3s ease-in-out;
 }
 
 .btn-cash-out:hover {
-    background-color: gold;
+    background-color: #aaa;
 }
 
 /*============-============-============-============
@@ -133,6 +143,7 @@ button:focus {
     height: var(--size-cube);
     transform-style: preserve-3d;
     transform: translateZ(-100px) rotateX( 4deg) rotateY( 2deg);
+    color: #333;
 }
 
 .cube .side {
