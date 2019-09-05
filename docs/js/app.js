@@ -103,7 +103,7 @@ $('#modalBtnTwo').on('click', function() {
   fetch(`${host}/?action=end`)
   .then(() => {
     $('body').fadeOut('slow', function() {
-      location.href='/';
+      location.href='/vegas-dice-game/index.html';
     });
   });
 });

@@ -1,5 +1,5 @@
 $('#startBtn').on('click', function() {
   $('body').fadeOut('slow', function() {
-    location.href='/game.html';
+    location.href='/vegas-dice-game/game.html';
   });
 });
