@@ -10,6 +10,7 @@ const dieOne = document.getElementById('dieOne');
 const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2500;
 let playerName = 'Player';
+let currentScore = 0;
 
 init();
 
@@ -19,19 +20,10 @@ function init() {
   fetch(`${host}`)
   .then(response => response.json())
   .then(gameData => {
-    console.log(gameData);
-    playerName = gameData.playerName;
-    $('.playerName').text(gameData.playerName);
+    playerName = gameData.player.name;
+    currentScore = gameData.score;
+    $('.playerName').text(gameData.player.name);
     setGameInfo(gameData);
-    if(gameData.newGame == true) {
-      // Start modal on page load after player number fetched
-      setModalInfo('Welcome Player', 'Get ready to crush it playing Vegas Dice!', 'Start Game');
-      $('#modal').modal({
-        show: true,
-        keyboard: false,
-        backdrop: 'static'
-      });
-    }
   });
 
   fetch(`${host}/highest-scores`)
@@ -46,7 +38,7 @@ function init() {
 }
 
 function setModalInfo (messageOne, messageTwo, buttonText) {
-    $('#modalMessageMain').text(`${messageOne} ${playerName}!`);
+    $('#modalMessageMain').text(`${messageOne}`);
     $('#modalMessageSecondary').text(messageTwo);
     $('#modalBtn').text(buttonText);
 }
@@ -61,21 +53,12 @@ function setGameInfo (gameData) {
   }
 }
 
-// Start new game
-$('#modalBtn').on('click', function() {
-  fetch(`${host}/?action=start`)
-  .then(() => {
-    init();
-  });
-});
-
 // Roll the Dice
 $('#roll').on('click', function() {
 
   fetch(`${host}/?action=play`)
   .then(response => response.json())
   .then(gameData => {
-    // console.log(gameData);
 
     const regex = /roll-\w+/;
     $(this).css({ 
@@ -98,6 +81,8 @@ $('#roll').on('click', function() {
     // restart animation by triggering reflow
     void dieTwo.offsetWidth;
     $('.die-two').addClass(rolls[gameData.dieTwo - 1]);
+
+    currentScore = gameData.score;
   
     // setTimeout ensures button cannot be pressed again until animation sequence ends
     window.setTimeout(() => {
@@ -111,9 +96,21 @@ $('#roll').on('click', function() {
   });
 });
 
+// ******** BUTTON EVENT LISTENERS ******** //
+
+// End game
+$('#modalBtnTwo').on('click', function() {
+  fetch(`${host}/?action=end`)
+  .then(() => {
+    $('body').fadeOut('slow', function() {
+      location.href='/';
+    });
+  });
+});
+
 $('#cashOut').on('click', function() {
 
-  setModalInfo('Thanks for playing', 'Would you like to play again?', 'Play Again');
+  setModalInfo('Are you sure you want to cash out?', `Your total credits are ${currentScore}`, 'Cash Out');
 
   $('#modal').modal({
     show: true,
@@ -121,5 +118,4 @@ $('#cashOut').on('click', function() {
     backdrop: 'static'
   });
 
-  fetch(`${host}/?action=end`);
 });

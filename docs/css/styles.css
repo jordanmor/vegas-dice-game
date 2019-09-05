@@ -5,9 +5,9 @@
 :root {
     --color-primary: #323639;
     --color-secondary: rgba(44, 62, 80, 0.95);
-    --color-cube-face: rgba(245, 241, 241, 0.95);
+    --color-cube-face: rgba(245, 241, 241, 1);
 
-    --size-cube: 80px;
+    --size-cube: 140px;
 
     /*Rotate cube 3 times and end animation with a slight tilt */
     --cube-deg-0: calc(360deg * 2 + 4deg);
@@ -21,26 +21,18 @@
 ==============-============-============-==========*/
 
 body {
+    font-family: 'Open Sans', sans-serif;
     color: var(--color-primary);
-    background-color: #fafafa;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 250px;
-    background-image: url('../img/craps-table.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
+    background-color: #34495e;
+    color: #fdfdfd;
 }
 
 h1 {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 3rem;
+    letter-spacing: 1px;
     text-align: center;
-    font-size: 2rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 h2 {
@@ -48,76 +40,141 @@ h2 {
     font-size: 1.4rem;
 }
 
-button:focus {
-    outline: none;
+.modal-content {
+    padding: 2.5rem 1rem;
+    color: #333;
 }
+
+header h1 {
+    color: #27ae60;
+}
+
 
 /*============-============-============-============
                         BUTTONS
 ==============-============-============-==========*/
 
+button:focus {
+    outline: none;
+}
+
 .btn-roll,
 .btn-cash-out {
-    width: 130px;
-    height: 50px;
-    border-radius: 4px;
-    font-size: 1.4rem;
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    font-size: 1.5rem;
+    background-color: #34495e;
+    border: 4px solid #fdfdfd;
+    color: #fdfdfd;
     outline: none;
     transition: .3s ease-in-out;
     cursor: pointer;
 }
 
-.btn-roll:hover {
-    background-color: rgba(50,50,50,0.2);
+.btn-roll:hover,
+.btn-cash-out:hover {
+    background-color: #aaa;
 }
 
 .btn-roll {
-    position: absolute;
-    bottom: 100px;
-}
-
-.container-above-table {
-    position: relative;
+    bottom: 0;
+    right: 0;
+    border-bottom-width: 0;
+    border-right-width: 0;
 }
 
 .btn-cash-out {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     right: 0;
     top: 0;
-    font-size: 1.2rem;
-    background-color: yellow;
-    border: 1px solid #333;
-    transition: .3s ease-in-out;
-}
-
-.btn-cash-out:hover {
-    background-color: gold;
+    border-top-width: 0;
+    border-right-width: 0;
 }
 
 /*============-============-============-============
-                      GAME TABLES
+                      GAME BOARD
 ==============-============-============-==========*/
+
+.wrapper-game {
+    padding: 0;
+}
+
+.player-message {
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 2px;
+    position: absolute;
+    top: 30px;
+    font-size: 2.4rem;
+    margin: 0;
+    padding: 0;
+}
+
+.game-info {
+    border: 4px solid #fdfdfd;
+    border-bottom-width: 1px;
+}
+
+.game-info table {
+    margin-bottom: 0;
+}
+
+.game-info thead {
+    color: #27ae60;
+}
 
 .game-info table th,
 .game-info table td {
     text-align: center;
     width: 200px;
+    font-size: 1.2rem;
 }
 
-.game-info table td {
-    font-size: 1.4rem;
+.wrapper-scores {
+    border: 4px solid #fdfdfd;
+    border-left-width: 2px;
 }
 
-.player-message {
+.wrapper-scores h3 {
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 1rem 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.instructions {
+    border: 4px solid #fdfdfd;
+    border-top-width: 0;
+    padding: .75rem 2rem;
+}
+
+.instructions h3 {
     font-size: 1.6rem;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.instructions p {
+    margin: 0;
 }
 
 /*============-============-============-============
                          CUBES
 ==============-============-============-==========*/
+
+.cube-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 380px;
+    background-color: #27ae60;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border: 4px solid #fdfdfd;
+}
 
 .cube-container {
     perspective: 800px;
@@ -133,6 +190,7 @@ button:focus {
     height: var(--size-cube);
     transform-style: preserve-3d;
     transform: translateZ(-100px) rotateX( 4deg) rotateY( 2deg);
+    color: #333;
 }
 
 .cube .side {
