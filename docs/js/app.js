@@ -1,9 +1,3 @@
-// For testing and development
-const localHost = 'http://localhost:8080';
-// For production and deployment
-const herokuHost = 'https://vegas-dice-game.herokuapp.com';
-const host = herokuHost;
-
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
 
 const dieOne = document.getElementById('dieOne');
@@ -23,7 +17,6 @@ function init() {
     playerName = gameData.player.name;
     currentScore = gameData.score;
     $('.playerName').text(gameData.player.name);
-    setGameInfo(gameData);
   });
 
   fetch(`${host}/highest-scores`)
@@ -59,6 +52,8 @@ $('#roll').on('click', function() {
   fetch(`${host}/?action=play`)
   .then(response => response.json())
   .then(gameData => {
+
+    console.log(gameData);
 
     const regex = /roll-\w+/;
     $(this).css({ 
@@ -103,7 +98,7 @@ $('#modalBtnTwo').on('click', function() {
   fetch(`${host}/?action=end`)
   .then(() => {
     $('body').fadeOut('slow', function() {
-      location.href='/vegas-dice-game/index.html';
+      location.href=homePath;
     });
   });
 });

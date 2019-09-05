@@ -16,16 +16,16 @@
     </header>
 
     <div class="container">
-        <div class="row">
-            <div class="col-9 wrapper-game">
+        <div class="wrapper row">
+            <div class="col-lg-9 wrapper-game">
 
                 <div class="game-info">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">Player Name</th>
+                            <th scope="col">Player</th>
                             <th scope="col">Point</th>
-                            <th scope="col">Bet Amount</th>
+                            <th scope="col">Bet</th>
                             <th scope="col">Credits</th>
                         </tr>
                         </thead>
@@ -65,8 +65,10 @@
                             <div class="side six">6</div>
                         </div>
                     </div>
-                    <button id="cashOut" class="btn-cash-out">Cash Out</button>
-                    <button id="roll" class="btn-roll">Roll</button>
+                    <button id="cashOut" class="btn-game btn-top-right">Cash Out</button>
+                    <button id="roll" class="btn-game btn-bottom-right">Roll</button>
+                    <button class="btn-game btn-top-left"></button>
+                    <button class="btn-game btn-bottom-left">Change Bet</button>
 
                 </div> <!-- End of cube wrapper -->
 
@@ -80,7 +82,7 @@
                     <p>- If a player has POINT and rolls 7, it is a LOST</p>
                 </div>
             </div>
-            <div class="col-3 wrapper-scores">
+            <div class="col-lg-3 wrapper-scores">
                 <h3>Top 10 Highest Scores</h3>
                 <table class="table">
                         <tbody id="highScores">
@@ -109,6 +111,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="js/config.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
