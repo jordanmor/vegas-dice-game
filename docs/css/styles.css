@@ -133,6 +133,29 @@ button:focus {
     padding: 0;
 }
 
+.animate-message {
+    animation: animateMessage .5s linear;
+}
+
+@keyframes animateMessage {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.12);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.12);
+    }
+    100% {
+        transform: scale(1);
+    }
+
+}
+
 .game-info {
     border: 4px solid #fdfdfd;
     border-bottom-width: 1px;

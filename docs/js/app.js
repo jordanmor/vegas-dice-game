@@ -1,7 +1,7 @@
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
 const dieOne = document.getElementById('dieOne');
 const dieTwo = document.getElementById('dieTwo');
-const animationDuration = 2500;
+const animationDuration = 2300;
 let playerName = 'Player';
 let currentScore = 0;
 
@@ -60,6 +60,8 @@ function populateCubeFaces() {
 // Roll the Dice
 $('#roll').on('click', function() {
 
+  $('#playerMessage').removeClass('animate-message');
+
   fetch(`${host}/?action=play`)
   .then(response => response.json())
   .then(gameData => {
@@ -98,6 +100,7 @@ $('#roll').on('click', function() {
       });
       // Game info also updates after the dice stop rolling
       setGameInfo(gameData);
+      $('#playerMessage').addClass('animate-message');
     }, animationDuration);
   });
 });
