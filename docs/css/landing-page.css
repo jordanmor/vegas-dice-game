@@ -14,7 +14,7 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 12rem;
+  padding-top: 6rem;
 }
 
 h1 {
@@ -43,6 +43,21 @@ h1 {
 /*============-============-============-============
                       MEDIA QUERIES
 ==============-============-============-==========*/
+
+/* XS Mobile Phones */
+@media (min-width: 300px) and (max-width: 374px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile Phones */
+@media (min-width: 375px) and (max-width: 475px) {
+  h1 {
+    font-size: 2.4rem;
+  }
+}
+
 
 @media (min-width: 576px) {
   h1 {

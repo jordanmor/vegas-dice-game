@@ -7,7 +7,7 @@
     --color-secondary: rgba(44, 62, 80, 0.95);
     --color-cube-face: rgba(245, 241, 241, 1);
 
-    --size-cube: 140px;
+    --size-cube: 115px;
 
     /*Rotate cube 3 times and end animation with a slight tilt */
     --cube-deg-0: calc(360deg * 2 + 4deg);
@@ -29,7 +29,7 @@ body {
 
 h1 {
     font-family: 'Luckiest Guy', cursive;
-    font-size: 3rem;
+    font-size: 3.2rem;
     letter-spacing: 1px;
     text-align: center;
     margin-top: 3rem;
@@ -64,9 +64,9 @@ button:focus {
 
 .btn-game {
     position: absolute;
-    width: 150px;
-    height: 100px;
-    font-size: 1.3rem;
+    width: 130px;
+    height: 80px;
+    font-size: 1.15rem;
     font-weight: bold;
     background-color: #34495e;
     border-style: solid;
@@ -114,6 +114,10 @@ button:focus {
                       GAME BOARD
 ==============-============-============-==========*/
 
+.wrapper {
+    padding: 1rem;
+}
+
 .wrapper-game {
     padding: 0;
 }
@@ -123,7 +127,8 @@ button:focus {
     letter-spacing: 2px;
     position: absolute;
     top: 30px;
-    font-size: 2.4rem;
+    font-size: 1.65rem;
+    width: 35%;
     margin: 0;
     padding: 0;
 }
@@ -150,7 +155,7 @@ button:focus {
 
 .wrapper-scores {
     border: 4px solid #fdfdfd;
-    border-left-width: 2px;
+    border-top-width: 0;
 }
 
 .wrapper-scores h3 {
@@ -159,6 +164,10 @@ button:focus {
     padding: 1rem 0;
     color: #27ae60;
     font-weight: bold;
+}
+
+.wrapper-scores td {
+    font-size: 1.2rem;
 }
 
 .instructions {
@@ -174,7 +183,8 @@ button:focus {
 }
 
 .instructions p {
-    margin: 0;
+    font-size: .9rem;
+    margin: 0 0 .25rem 0;
 }
 
 /*============-============-============-============
@@ -325,34 +335,79 @@ rotateX, rotateY
                       MEDIA QUERIES
 ==============-============-============-==========*/
 
-@media (max-width: 575px) {
-    .wrapper {
-        padding: 1rem;
-    }
+/* Mobile Phones */
+@media (max-width: 475px) {
 
-    .instructions p {
-        font-size: .9rem;
-    }
-}
-
-@media (max-width: 767px) {
     :root {
-        --size-cube: 110px;
+        --size-cube: 90px;
+    }
+
+    header h1 {
+        font-size: 2.4rem;
+    }
+
+    .game-info table td {
+        font-size: .85rem;
+        font-weight: bold;
     }
 
     .btn-game {
-        width: 120px;
+        width: 100px;
         height: 80px;
+        font-size: 1rem;
+    }
+
+    .instructions p {
+        font-size: .8rem;
+    }
+
+    .player-message {
         font-size: 1.15rem;
+    }
+
+    .wrapper-scores td {
+        font-size: 1.15rem; 
     }
 }
 
-@media (max-width: 991px) {
-    .wrapper-scores {
-        border-top-width: 0;
+@media (min-width: 768px) {
+
+    .btn-game {
+        width: 150px;
+        height: 100px;
+        font-size: 1.15rem;
+    }
+
+    .player-message {
+        font-size: 1.8rem;
+        width: 100%;
+    }
+
+    .instructions p {
+        font-size: .95rem;
     }
 
     .wrapper-scores td {
         font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .btn-game {
+        font-size: 1.3rem;
+    }
+
+    .player-message {
+        font-size: 2rem;
+    }
+
+    .wrapper-scores {
+        border-top-width: 4px;
+        border-left-width: 0;
+    }
+
+    .wrapper-scores td {
+        font-size: 1rem;
     }
 }
