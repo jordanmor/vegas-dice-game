@@ -9,7 +9,7 @@
 - Persist highest player scores with an online mySQL database utilizing Spring Data JPA for db interaction
 - Write game logic in Java following OOP concepts
 - Build an interactive front end using responsive web design, jQuery, Bootstrap, CSS3 and HTML
-- Animate dice using CSS 3D animations.
+- Animate dice using CSS 3D animations and jQuery.
 - Host Spring Boot RESTful app on Heroku. Make front-end application available at a public URL using GitHub pages.
 - Produce an MVP by project due date.
 

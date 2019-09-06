@@ -1,3 +1,10 @@
+let host = 'https://vegas-dice-game.herokuapp.com'; // Heroku
+let homePath = '/vegas-dice-game/'; // GitHub Pages
+
+// Local host and path for testing and development
+// host = 'http://localhost:8080';
+// homePath = '/';
+
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
 const dieOne = document.getElementById('dieOne');
 const dieTwo = document.getElementById('dieTwo');
@@ -6,13 +13,37 @@ let playerName = 'Player';
 let currentScore = 0;
 let point = 0;
 
+// Collection of SVG die faces
+const dieFaceSvgs = {
+  faceOne: `<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 557 557">
+              <circle cx="278" cy="278" r="70"/>
+             </svg>`,
+  faceTwo: `<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 557 557">
+              <circle cx="439.975" cy="439.974" r="70"/>
+              <circle cx="117.026" cy="117.026" r="70"/>
+            </svg>`,
+  faceThree: `<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 557 557">
+                <path fill="none" stroke="#000" stroke-dasharray="0,228.4" stroke-linecap="round" stroke-width="140" d="M117 440l325-325"/>
+              </svg>`,
+  faceFour: `<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 557 557">
+                <path fill-rule="nonzero" stroke="#000" stroke-dasharray="0,323" stroke-linecap="round" stroke-width="140" d="M117 117v325m323-2V115"/>
+             </svg>`,
+  faceFive: `<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 557 557">
+                <path fill-rule="nonzero" stroke="#000" stroke-dasharray="0,228.4" stroke-linecap="round" stroke-width="140" d="M440 440L115 115m2 325l325-325"/>
+             </svg>`,
+  faceSix: `<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 557 557">
+              <path fill-rule="nonzero" stroke="#000" stroke-dasharray="0,161.5" stroke-linecap="round" stroke-width="140" d="M117 117v325m323-2V115"/>
+            </svg>`
+};
+
+// Initialize app on page load or refresh
 init();
 
 /* ==========-==========-==========-========== //
            ******** FUNCTIONS ********
 // ==========-==========-==========-========== */
 
-// One page load or refresh
+// Initializes app on page load or refresh
 function init() {
 
   // Add SVG die faces to cubes
@@ -21,7 +52,6 @@ function init() {
   fetch(`${host}/game`)
   .then(response => response.json())
   .then(gameData => {
-    console.log(gameData);
     playerName = gameData.player.name;
     currentScore = gameData.score;
     point = gameData.point;
@@ -120,6 +150,7 @@ $('#roll').on('click', function() {
         $('#credits').addClass('animate-data-change');
       }
 
+      // When player is out of credits, show modal for game exit or new game
       if(gameData.score === 0) {
         console.log("Game Over");
 
@@ -165,6 +196,7 @@ $('#modalBtnTwo').on('click', function() {
   });
 });
 
+// Populate and display modal when player clicks the Cash Out button
 $('#cashOut').on('click', function() {
 
   setModalInfo('Are you sure you want to cash out?', `Your total credits are ${currentScore}`, 'Continue Game','Cash Out');

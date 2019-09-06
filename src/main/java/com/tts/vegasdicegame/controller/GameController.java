@@ -14,6 +14,11 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
+    @GetMapping
+    public String welcomeResponse() {
+        return "Welcome to the Vegas Dice Game API!";
+    }
+
     @CrossOrigin
     @GetMapping(value = "/game")
     public GameResponse playGame(@RequestParam(required = false) String action) {
