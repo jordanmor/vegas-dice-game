@@ -1,12 +1,16 @@
 ## Vegas Dice Game | [Live Demo](https://jordanmor.github.io/vegas-dice-game/)
 
-Tech Talent Select Midpoint Project - up for review by The Hartford
+**Screenshot of the Tech Talent Select Midpoint Project - up for review by The Hartford**  
+ 
+![Vegas Dice Game Screen Shot](vegas-dice-game-screenshot.png) 
 
 ### My Personal Project Goals
-- Use this project as an opportunity to utilize Spring Boot, by building a REST API that will send game data to an interactive front end.
-- Host Spring Boot RESTful app on Heroku. Make front-end application available at a public URL using GitHub pages.
-- On the backend, persist highest player scores with an online mySQL database.
+- Use this project as an opportunity to utilize Spring Boot by building a REST API that that interacts with the front end via http requests and responses.
+- Persist highest player scores with an online mySQL database utilizing Spring Data JPA for db interaction
+- Write game logic in Java following OOP concepts
+- Build an interactive front end using responsive web design, jQuery, Bootstrap, CSS3 and HTML
 - Animate dice using CSS 3D animations.
+- Host Spring Boot RESTful app on Heroku. Make front-end application available at a public URL using GitHub pages.
 - Produce an MVP by project due date.
 
 **Project Assigned:** 08/30/2019  
