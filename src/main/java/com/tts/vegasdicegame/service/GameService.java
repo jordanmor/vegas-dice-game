@@ -45,6 +45,8 @@ public class GameService {
         gameResponse.setMessage(null);
         gameResponse.setPoint(0);
         gameResponse.setScore(100);
+        gameResponse.setDieOne(1);
+        gameResponse.setDieTwo(1);
         gameResponse.setNewGame(false);
     }
 
@@ -56,12 +58,6 @@ public class GameService {
     }
 
     private GameResponse playNextRound() {
-        // User's score reaches 0
-        if(gameResponse.getScore() == 0) {
-            gameResponse.setMessage("Game Over");
-            gameResponse.setNewGame(true);
-            return gameResponse;
-        }
 
         // Checks if point is set to determine if starting new round
         if(gameResponse.getPoint() == 0) {
@@ -95,7 +91,12 @@ public class GameService {
             gameResponse.setMessage("You Won!");
         } else if (result == GameEnum.LOST) {
             gameResponse.setScore(gameResponse.getScore() - 10);
-            gameResponse.setMessage("You Lost. Try again.");
+            // User's score reaches 0
+            if(gameResponse.getScore() == 0) {
+                gameResponse.setMessage("Game Over");
+            } else {
+                gameResponse.setMessage("You Lost. Try again.");
+            }
         }
     }
 

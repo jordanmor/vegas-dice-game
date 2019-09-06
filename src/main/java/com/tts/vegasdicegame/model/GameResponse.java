@@ -15,7 +15,6 @@ public class GameResponse {
 
     public GameResponse() {
         newGame = true;
-        score = 100;
         dieOne = 1;
         dieTwo = 1;
     }
