@@ -133,11 +133,12 @@ button:focus {
     padding: 0;
 }
 
-.animate-message {
-    animation: animateMessage .5s linear;
+.animate-data-change {
+    font-weight: bold;
+    animation: alertDataChange .5s linear;
 }
 
-@keyframes animateMessage {
+@keyframes alertDataChange {
     0% {
         transform: scale(1);
     }

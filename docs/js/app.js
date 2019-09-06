@@ -4,8 +4,13 @@ const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2300;
 let playerName = 'Player';
 let currentScore = 0;
+let point = 0;
 
 init();
+
+/* ==========-==========-==========-========== //
+           ******** FUNCTIONS ********
+// ==========-==========-==========-========== */
 
 // One page load or refresh
 function init() {
@@ -18,6 +23,7 @@ function init() {
   .then(gameData => {
     playerName = gameData.player.name;
     currentScore = gameData.score;
+    point = gameData.point;
     $('.playerName').text(gameData.player.name);
   });
 
@@ -57,16 +63,20 @@ function populateCubeFaces() {
   $('.side.six').html(dieFaceSvgs.faceSix);
 }
 
+/* ==========-==========-==========-========== //
+        ******** EVENT LISTENERS ********
+// ==========-==========-==========-========== */
+
 // Roll the Dice
 $('#roll').on('click', function() {
 
-  $('#playerMessage').removeClass('animate-message');
+  const previousScore = currentScore;
+
+  $('#playerMessage, #credits, #point').removeClass('animate-data-change');
 
   fetch(`${host}/?action=play`)
   .then(response => response.json())
   .then(gameData => {
-
-    console.log(gameData);
 
     const regex = /roll-\w+/;
     $(this).css({ 
@@ -100,12 +110,24 @@ $('#roll').on('click', function() {
       });
       // Game info also updates after the dice stop rolling
       setGameInfo(gameData);
-      $('#playerMessage').addClass('animate-message');
-    }, animationDuration);
+      // Animate message that alerts player to roll result
+      $('#playerMessage').addClass('animate-data-change');
+
+      // Animate score if there is a change
+      if(currentScore !== previousScore) {
+        $('#credits').addClass('animate-data-change');
+      }
+
+      // Animate point when it is first set
+      if(point !== gameData.point && gameData.point !== 0) {
+        $('#point').addClass('animate-data-change');
+        point = gameData.point;
+      }
+    }, animationDuration); // <-- END OF SET TIMEOUT -->
   });
 });
 
-// ******** BUTTON EVENT LISTENERS ******** //
+// ***** BUTTON EVENT LISTENERS ***** //
 
 // End game
 $('#modalBtnTwo').on('click', function() {
