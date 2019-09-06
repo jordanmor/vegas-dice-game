@@ -17,8 +17,7 @@ public class GameController {
     @CrossOrigin
     @GetMapping(value = "/")
     public GameResponse playGame(@RequestParam(required = false) String action) {
-        gameService.playGame(action);
-        return gameService.getGameResponse();
+        return gameService.playGame(action);
     }
 
 }

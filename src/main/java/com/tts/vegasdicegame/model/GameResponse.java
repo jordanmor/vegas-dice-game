@@ -8,7 +8,6 @@ public class GameResponse {
     private Player player;
     private int dieOne;
     private int dieTwo;
-    private int sum;
     private int point;
     private int score;
     private boolean newGame;
