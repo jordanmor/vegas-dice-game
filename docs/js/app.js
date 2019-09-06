@@ -18,9 +18,10 @@ function init() {
   // Add SVG die faces to cubes
   populateCubeFaces();
 
-  fetch(`${host}`)
+  fetch(`${host}/game`)
   .then(response => response.json())
   .then(gameData => {
+    console.log(gameData);
     playerName = gameData.player.name;
     currentScore = gameData.score;
     point = gameData.point;
@@ -38,10 +39,11 @@ function init() {
   });
 }
 
-function setModalInfo (messageOne, messageTwo, buttonText) {
+function setModalInfo (messageOne, messageTwo, buttonTextOne, buttonTextTwo) {
     $('#modalMessageMain').text(`${messageOne}`);
     $('#modalMessageSecondary').text(messageTwo);
-    $('#modalBtn').text(buttonText);
+    $('#modalBtnOne').text(buttonTextOne);
+    $('#modalBtnTwo').text(buttonTextTwo);
 }
 
 function setGameInfo (gameData) {
@@ -74,7 +76,7 @@ $('#roll').on('click', function() {
 
   $('#playerMessage, #credits, #point').removeClass('animate-data-change');
 
-  fetch(`${host}/?action=play`)
+  fetch(`${host}/game?action=play`)
   .then(response => response.json())
   .then(gameData => {
 
@@ -118,6 +120,18 @@ $('#roll').on('click', function() {
         $('#credits').addClass('animate-data-change');
       }
 
+      if(gameData.score === 0) {
+        console.log("Game Over");
+
+        setModalInfo('You are out of credits', 'Would you like to play a new game?', 'New Game', 'Leave Game');
+
+        $('#modal').modal({
+          show: true,
+          keyboard: false,
+          backdrop: 'static'
+        });
+      }
+
       // Animate point when it is first set
       if(point !== gameData.point && gameData.point !== 0) {
         $('#point').addClass('animate-data-change');
@@ -129,9 +143,21 @@ $('#roll').on('click', function() {
 
 // ***** BUTTON EVENT LISTENERS ***** //
 
+// Start New Game
+$('#modalBtnOne').on('click', function() {
+  if(this.textContent === 'New Game') {
+    fetch(`${host}/game?action=end`)
+    .then(() => {
+      $('body').fadeOut('slow', function() {
+        location.href=homePath + 'game';
+      });
+    });
+  }
+});
+
 // End game
 $('#modalBtnTwo').on('click', function() {
-  fetch(`${host}/?action=end`)
+  fetch(`${host}/game?action=end`)
   .then(() => {
     $('body').fadeOut('slow', function() {
       location.href=homePath;
@@ -141,7 +167,7 @@ $('#modalBtnTwo').on('click', function() {
 
 $('#cashOut').on('click', function() {
 
-  setModalInfo('Are you sure you want to cash out?', `Your total credits are ${currentScore}`, 'Cash Out');
+  setModalInfo('Are you sure you want to cash out?', `Your total credits are ${currentScore}`, 'Continue Game','Cash Out');
 
   $('#modal').modal({
     show: true,
