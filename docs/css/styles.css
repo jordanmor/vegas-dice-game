@@ -49,10 +49,9 @@ header h1 {
     color: #27ae60;
 }
 
-.wrapper {
-    margin-bottom: 2rem;
+a:hover {
+    text-decoration: none;
 }
-
 
 /*============-============-============-============
                         BUTTONS
@@ -73,13 +72,13 @@ button:focus {
     border-color: #fdfdfd;
     color: #fdfdfd;
     outline: none;
-    transition: .3s ease-in-out;
+    transition: .3s ease-out;
     cursor: pointer;
 }
 
 .btn-game:hover {
-    color: #333;
-    background-color: #aaa;
+    color: #34495e;
+    background-color: #ccc;
 }
 
 .btn-top-left {
@@ -359,6 +358,60 @@ rotateX, rotateY
     100% {
       transform: translateZ(-100px) rotateX(var(--cube-deg-0)) rotateY(var(--cube-deg-180));
     }
+}
+
+/*============-============-============-============
+                        FOOTER
+==============-============-============-==========*/
+  
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+.footer-links a + a {
+    margin-left: 1.4em;
+}
+
+.footer-links a,
+.footer-links svg {
+    width: 25px;
+    height: 25px;
+}
+
+.footer-links a path {
+    fill: #34495e;
+    transition: .3s;
+}
+
+.footer-links a:hover path {
+    fill: #34495e;
+}
+
+.footer-links a circle {
+    fill: #27ae60;
+    transition: .3s;
+}
+
+.footer-links a:hover circle {
+    fill: #fafafa;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-bottom: 1rem;
 }
 
 /*============-============-============-============
