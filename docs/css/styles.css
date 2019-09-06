@@ -40,11 +40,6 @@ h2 {
     font-size: 1.4rem;
 }
 
-.modal-content {
-    padding: 2.5rem 1rem;
-    color: #333;
-}
-
 header h1 {
     color: #27ae60;
 }
@@ -208,6 +203,33 @@ button:focus {
 .instructions p {
     font-size: .9rem;
     margin: 0 0 .25rem 0;
+}
+
+/* ----- MODAL ----- */
+
+.modal-content {
+    padding: 2.5rem 1rem;
+    color: #34495e;
+    background-color: #fafafa;
+}
+
+.modal-content h3 {
+    font-size: 1.5rem;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+}
+
+.modal-footer button {
+    width: 150px;
+    padding: 1.2rem 0;
+    background-color: #34495e;
+}
+
+.modal-footer button:hover {
+    color: #34495e;
+    background-color: #ccc;
 }
 
 /*============-============-============-============
