@@ -68,7 +68,7 @@
                     <button id="cashOut" class="btn-game btn-top-right">Cash Out</button>
                     <button id="roll" class="btn-game btn-bottom-right">Roll</button>
                     <button class="btn-game btn-top-left"></button>
-                    <button class="btn-game btn-bottom-left">Change Bet</button>
+                    <button id="openBetModal" class="btn-game btn-bottom-left">Change Bet</button>
 
                 </div> <!-- End of cube wrapper -->
 
@@ -80,6 +80,7 @@
                     <p>- If a player rolled POINT, the player continues to roll until one of two things happens:</p>
                     <p>- If a player has POINT and rolls the POINT again, it is a WIN</p>
                     <p>- If a player has POINT and rolls 7, it is a LOST</p>
+                    <p>- A bet can range from 10 to 100 credits, unless a player has less than 100 credits, in which case, a bet can range from 10 credits to the player's total credits</p>
                 </div>
             </div>
             <div class="col-lg-3 wrapper-scores">
@@ -99,6 +100,7 @@
                 <div class="modal-body text-center">
                     <h3 id="modalMessageMain"></h3>
                     <p id="modalMessageSecondary"></p>
+                    <p id="changeBet" class="bet-amount"><button class="minus btn btn-outline-secondary">-</button><span class="amount">10</span><button class="plus btn btn-outline-secondary">+</button></p>
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-top-0">
                     <button type="button" id="modalBtnOne" class="btn btn-secondary" data-dismiss="modal">Continue Game</button>
