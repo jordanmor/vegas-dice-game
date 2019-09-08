@@ -9,11 +9,13 @@ const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', '
 const dieOne = document.getElementById('dieOne');
 const dieTwo = document.getElementById('dieTwo');
 const animationDuration = 2300;
+const soundIcon = document.getElementById('soundIcon');
 let playerName = 'Player';
 let currentScore = 0;
 let point = 0;
 let betAmount = 0;
 let changedBetAmount = betAmount;
+let muted = false;
 
 // Collection of SVG die faces
 const dieFaceSvgs = {
@@ -47,6 +49,18 @@ init();
 
 // Initializes app on page load or refresh
 function init() {
+
+  // grab muted value from local storage on page load or refresh
+  if (localStorage.getItem("muted") !== null) {
+    muted = JSON.parse(localStorage.getItem('muted'));
+  }
+
+  // Determine whether user set mute by default
+  if(muted) {
+    soundIcon.src = '/img/mute-icon.png';
+  } else {
+    soundIcon.src = '/img/sound-icon.png';
+  }
 
   // Add SVG die faces to cubes
   populateCubeFaces();
@@ -124,6 +138,10 @@ $('#roll').on('click', function() {
 
   const previousScore = currentScore;
 
+  if(!muted) {
+    $('audio#diceRollSound')[0].play();
+  }
+
   $('#playerMessage, #credits, #point').removeClass('animate-data-change');
 
   fetch(`${host}/game?action=play`)
@@ -163,6 +181,16 @@ $('#roll').on('click', function() {
       setGameInfo(gameData);
       // Animate message that alerts player to roll result
       $('#playerMessage').addClass('animate-data-change');
+
+      // Audio for losing roll
+      if(!muted) {
+        if(gameData.message !== null && gameData.message.includes('You Lost')) {
+          $('audio#crowdOh')[0].play();
+          // Audio for winning roll
+        } else if(gameData.message !== null && gameData.message.includes('You Won')) {
+          $('audio#cheers')[0].play();
+        }
+      }
 
       // On a losing roll, if player credits are less than bet amount, match bet amount to player credits
       if(gameData.message !== null && gameData.message.includes('You Lost') && betAmount > currentScore) {
@@ -214,7 +242,7 @@ $('#modalBtnOne').on('click', function() {
 });
 
 // When clicked, modal button two will either... 
-// Set the bet amount or... 
+// Set the bet amount on the backend or... 
 // End the game
 $('#modalBtnTwo').on('click', function() {
   if(this.textContent === 'Change Bet') {
@@ -236,6 +264,10 @@ $('#modalBtnTwo').on('click', function() {
 
 // Populate and display modal when player clicks the Cash Out button
 $('#cashOut').on('click', function() {
+
+  if(!muted) {
+    $('audio#cashRegister')[0].play();
+  }
 
   setModalInfo('Are you sure you want to cash out?', `Your total credits are ${currentScore}`, 'Continue Game','Cash Out');
 
@@ -261,9 +293,13 @@ $('#openBetModal').on('click', function() {
     keyboard: false,
     backdrop: 'static'
   }); 
+
+  if(!muted) {
+    $('audio#pop')[0].play();
+  }
 });
 
-// Change Bet Amount
+// Change Bet Amount on front end
 $('#changeBet').on('click', function(e) {
   if($(e.target).hasClass('plus')) {
     // A bet can range from 10 to 100 credits, unless a player has less than 100 credits, 
@@ -277,4 +313,17 @@ $('#changeBet').on('click', function(e) {
       changedBetAmount -= 10;
       $('.amount').text(changedBetAmount);
     }
+});
+
+// Sound / Mute toggle button
+$('#soundBtn').on('click', function() {
+  if(soundIcon.src.includes('sound')) {
+    soundIcon.src = '/img/mute-icon.png';
+    muted = true;
+    localStorage.setItem('muted', 'true');
+  } else {
+    soundIcon.src = '/img/sound-icon.png';
+    muted = false;
+    localStorage.setItem('muted', 'false');
+  }
 });

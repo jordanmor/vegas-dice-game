@@ -25,6 +25,8 @@ public class GameController {
         return gameService.playGame(action);
     }
 
+    // Setting a new bet amount is best served on a separate path,
+    // since there is no need to return a gameResponse
     @CrossOrigin
     @GetMapping(value = "/change-bet")
     public void changeBetAmount(@RequestParam int bet) {

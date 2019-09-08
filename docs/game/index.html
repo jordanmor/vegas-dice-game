@@ -67,7 +67,9 @@
                     </div>
                     <button id="cashOut" class="btn-game btn-top-right">Cash Out</button>
                     <button id="roll" class="btn-game btn-bottom-right">Roll</button>
-                    <button class="btn-game btn-top-left"></button>
+                    <button id="soundBtn" class="btn-game btn-top-left">
+                        <img class="sound-icon" id="soundIcon" src="/img/sound-icon.png" alt="Sound icon">
+                    </button>
                     <button id="openBetModal" class="btn-game btn-bottom-left">Change Bet</button>
 
                 </div> <!-- End of cube wrapper -->
@@ -91,6 +93,15 @@
                 </table>
             </div>
         </div>
+    </div>
+
+    <!-- Audio Sounds -->
+    <div>
+        <audio id="diceRollSound" src="../audio/dice-roll.mp3" type="audio/mp3"></audio>
+        <audio id="cashRegister" src="../audio/cash-register.mp3" type="audio/mp3"></audio>
+        <audio id="cheers" src="../audio/cheers.mp3" type="audio/mp3"></audio>
+        <audio id="crowdOh" src="../audio/crowd-oh.mp3" type="audio/mp3"></audio>
+        <audio id="pop" src="../audio/pop.mp3" type="audio/mp3"></audio>
     </div>
       
     <!-- Modal -->
