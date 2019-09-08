@@ -57,9 +57,9 @@ function init() {
 
   // Determine whether user set mute by default
   if(muted) {
-    soundIcon.src = '/img/mute-icon.png';
+    soundIcon.src = '../img/mute-icon.png';
   } else {
-    soundIcon.src = '/img/sound-icon.png';
+    soundIcon.src = '../img/sound-icon.png';
   }
 
   // Add SVG die faces to cubes
@@ -318,11 +318,11 @@ $('#changeBet').on('click', function(e) {
 // Sound / Mute toggle button
 $('#soundBtn').on('click', function() {
   if(soundIcon.src.includes('sound')) {
-    soundIcon.src = '/img/mute-icon.png';
+    soundIcon.src = '../img/mute-icon.png';
     muted = true;
     localStorage.setItem('muted', 'true');
   } else {
-    soundIcon.src = '/img/sound-icon.png';
+    soundIcon.src = '../img/sound-icon.png';
     muted = false;
     localStorage.setItem('muted', 'false');
   }
