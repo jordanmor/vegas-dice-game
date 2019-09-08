@@ -1,7 +1,7 @@
 let homePath = '/vegas-dice-game/'; // GitHub Pages
 
 // Local path for testing and development
-// homePath = '/';
+homePath = '/';
 
 $('#startBtn').on('click', function() {
   $('body').fadeOut('slow', function() {

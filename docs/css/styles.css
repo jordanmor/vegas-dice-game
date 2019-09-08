@@ -54,8 +54,13 @@ a:hover {
                         BUTTONS
 ==============-============-============-==========*/
 
+button,
 button:focus {
     outline: none;
+}
+
+.btn-outline-secondary:focus {
+    box-shadow: none;
 }
 
 .btn-game {
@@ -223,6 +228,13 @@ button:focus {
     font-size: 1.2rem;
 }
 
+.modal-content input {
+    border: 1px solid #777;
+    outline: none;
+    padding: .5rem 1rem;
+    display: none;
+}
+
 .modal-footer button {
     width: 150px;
     padding: 1.2rem 0;
@@ -232,6 +244,20 @@ button:focus {
 .modal-footer button:hover {
     color: var(--color-primary);
     background-color: var(--color-btn-hover);
+}
+
+.modal-content .amount {
+    margin: 0 1rem;
+}
+
+.modal-body button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 2.5rem;
+} 
+
+.bet-amount {
+    margin-bottom: 0;
 }
 
 /*============-============-============-============
