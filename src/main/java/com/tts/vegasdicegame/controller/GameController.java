@@ -25,4 +25,10 @@ public class GameController {
         return gameService.playGame(action);
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/change-bet")
+    public void changeBetAmount(@RequestParam int bet) {
+        gameService.changeBetAmount(bet);
+    }
+
 }

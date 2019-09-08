@@ -33,6 +33,10 @@ public class GameService {
         return gameResponse;
     }
 
+    public void changeBetAmount(int bet) {
+        gameResponse.setBet(bet);
+    }
+
     private void createNewPlayer() {
         int playerNumber = playerService.findLatestPlayerNumber() + 1;
         String playerName = "Player " + playerNumber;
@@ -47,6 +51,7 @@ public class GameService {
         gameResponse.setScore(100);
         gameResponse.setDieOne(1);
         gameResponse.setDieTwo(1);
+        gameResponse.setBet(10);
         gameResponse.setNewGame(false);
     }
 
@@ -87,10 +92,10 @@ public class GameService {
     private void completeRound(GameEnum result) {
         gameResponse.setPoint(0);
         if(result == GameEnum.WON) {
-            gameResponse.setScore(gameResponse.getScore() + 10);
+            gameResponse.setScore(gameResponse.getScore() + gameResponse.getBet());
             gameResponse.setMessage("You Won!");
         } else if (result == GameEnum.LOST) {
-            gameResponse.setScore(gameResponse.getScore() - 10);
+            gameResponse.setScore(gameResponse.getScore() - gameResponse.getBet());
             // User's score reaches 0
             if(gameResponse.getScore() == 0) {
                 gameResponse.setMessage("Game Over");
@@ -101,8 +106,11 @@ public class GameService {
     }
 
     private GameResponse endGame() {
-        gameResponse.getPlayer().setHighScore(gameResponse.getScore());
-        playerService.save(gameResponse.getPlayer());
+        // Players who end the game with a score of 0 are not saved in the db
+        if(gameResponse.getScore() > 0) {
+            gameResponse.getPlayer().setHighScore(gameResponse.getScore());
+            playerService.save(gameResponse.getPlayer());
+        }
         gameResponse.setNewGame(true);
         return gameResponse;
     }
