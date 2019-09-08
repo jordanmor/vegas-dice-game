@@ -2,8 +2,8 @@ let host = 'https://vegas-dice-game.herokuapp.com'; // Heroku
 let homePath = '/vegas-dice-game/'; // GitHub Pages
 
 // Local host and path for testing and development
-host = 'http://localhost:8080';
-homePath = '/';
+// host = 'http://localhost:8080';
+// homePath = '/';
 
 const rolls = ['roll-one', 'roll-two', 'roll-three', 'roll-four', 'roll-five', 'roll-six'];
 const dieOne = document.getElementById('dieOne');
