@@ -17,6 +17,13 @@ let betAmount = 0;
 let changedBetAmount = betAmount;
 let muted = false;
 
+// Initialize Howl audio library
+const cheersSound = new Howl({ src: ['../audio/cheers.mp3']});
+const cashRegisterSound = new Howl({ src: ['../audio/cash-register.mp3']});
+const diceRollAudio = new Howl({ src: ['../audio/dice-roll.mp3']});
+const popAudio = new Howl({ src: ['../audio/pop.mp3']});
+const crowdOhAudio = new Howl({ src: ['../audio/crowd-oh.mp3']});
+
 // Collection of SVG die faces
 const dieFaceSvgs = {
   faceOne: `<svg xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 557 557">
@@ -135,11 +142,10 @@ function populateCubeFaces() {
 
 // ROLL THE DICE
 $('#roll').on('click', function() {
-
   const previousScore = currentScore;
 
   if(!muted) {
-    $('audio#diceRollSound')[0].play();
+    diceRollAudio.play();
   }
 
   $('#playerMessage, #credits, #point').removeClass('animate-data-change');
@@ -185,10 +191,9 @@ $('#roll').on('click', function() {
       // Audio for losing roll
       if(!muted) {
         if(gameData.message !== null && gameData.message.includes('You Lost')) {
-          $('audio#crowdOh')[0].play();
-          // Audio for winning roll
+          crowdOhAudio.play();
         } else if(gameData.message !== null && gameData.message.includes('You Won')) {
-          $('audio#cheers')[0].play();
+          cheersSound.play();
         }
       }
 
@@ -266,7 +271,7 @@ $('#modalBtnTwo').on('click', function() {
 $('#cashOut').on('click', function() {
 
   if(!muted) {
-    $('audio#cashRegister')[0].play();
+    cashRegisterSound.play();
   }
 
   setModalInfo('Are you sure you want to cash out?', `Your total credits are ${currentScore}`, 'Continue Game','Cash Out');
@@ -295,7 +300,7 @@ $('#openBetModal').on('click', function() {
   }); 
 
   if(!muted) {
-    $('audio#pop')[0].play();
+    popAudio.play();
   }
 });
 
