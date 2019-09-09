@@ -1,8 +1,8 @@
 ## Vegas Dice Game | [Live Demo](https://jordanmor.github.io/vegas-dice-game/)
 
-**Screenshot of the Tech Talent Select Midpoint Project - up for review by The Hartford**  
+**Screencast of the Tech Talent Select Midpoint Project - up for review by The Hartford**  
  
-![Vegas Dice Game Screen Shot](vegas-dice-game-screenshot.png) 
+![Vegas Dice Game Screen Cast](vegas-dice-game-screencast.gif) 
 
 ### My Personal Project Goals
 - Use this project as an opportunity to utilize Spring Boot by building a REST API that that interacts with the front end via http requests and responses.
