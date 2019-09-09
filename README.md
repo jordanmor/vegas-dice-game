@@ -1,5 +1,7 @@
 ## Vegas Dice Game | [Live Demo](https://jordanmor.github.io/vegas-dice-game/)
 
+A craps game, implemented mixing Spring Boot, RESTful web services, and a jQuery front end to create a complete solution that is deployed on Heroku and GitHub pages.
+
 **Screencast of the Tech Talent Select Midpoint Project - up for review by The Hartford**  
  
 ![Vegas Dice Game Screen Cast](vegas-dice-game-screencast.gif) 
@@ -16,6 +18,13 @@
 **Project Assigned:** 08/30/2019  
 **Project Due:** 09/09/2019  
 **Project Completed:** 09/08/2019
+
+**--NOTES FOR REVIEWER--**  
+The following application was built with the express purpose of learning how to write business logic using Java, how to create a REST API using Spring Boot, 
+how to integrate a mySQL database into the project, how to communicate with a REST API from a front end application via http requests and responses and how to deploy a Spring boot app on Heroku. 
+
+If I were to create this app without these conditions, this app would be better served being built using a front end framework with state, 
+such as React or Angular, and a simpler REST API whose only purpose is to store the players with the highest scores, with a minimal amount of calls to the server during game play.
 
 ### Original Project Instructions
 Given the following rules for the game of dice, create a Java program that prints out whether you won or lost on each roll.
