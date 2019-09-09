@@ -14,7 +14,8 @@
 - Produce an MVP by project due date.
 
 **Project Assigned:** 08/30/2019  
-**Project Due:** 09/06/2019
+**Project Due:** 09/09/2019  
+**Project Completed:** 09/08/2019
 
 ### Original Project Instructions
 Given the following rules for the game of dice, create a Java program that prints out whether you won or lost on each roll.
@@ -25,3 +26,34 @@ Given the following rules for the game of dice, create a Java program that print
 - If a player rolled POINT, the player continues to roll until one of two things happens:
 - If a player has POINT and rolls the POINT again, it is a WIN
 - If a player has POINT and rolls 7, it is a LOST
+
+### Installation Instructions
+1. git clone https://github.com/jordanmor/vegas-dice-game.git
+2. Open project in your IDE of choice, e.g., IntelliJ, Eclipse.
+3. Choose the project SDK and wait for the IDE to sync the Maven project.
+4. The data access sections use a MySQL database named `vegas_dice_game` running on localhost.
+Go to the `application.properties` file in `src/main/resources`, comment out the JDBC URL, username and password 
+for the Heroku connection and use the following properties for using the app with your local mySQL db
+    ```
+    spring.datasource.url=jdbc:mysql://localhost:3306/vegas_dice_game?useSSL=false&serverTimezone=UTC
+    spring.datasource.username={YOUR MYSQL USERNAME}
+    spring.datasource.password={YOUR MYSQL PASSWORD}
+    ```
+    The assumed username is root and no password is set.  
+    **Note: Make sure mySQL is running on your local machine.**  
+5. Run the application, which will run the REST API part of the app and connect to the local mySQL db
+6. The front end of this application is located in the directory `docs/`
+7. Open this part of the application with the source-code editor of your choice, e.g., VS Code, Atom, Sublime.
+8. Go to the file `docs/js/app.js` and use the following url settings located at the top of the file:
+    ```
+    // Local host and path for testing and development
+    host = 'http://localhost:8080';
+    homePath = '/';
+    ```
+9. Now go to the file docs/js/landing-page.js and use the following url settings located at the top of the file:
+    ```
+    // Local path for testing and development
+       homePath = '/';
+    ```
+ 10. Open the `docs/index.html` in your browser of choice. It is recommended to launch a development local Server with a live reload feature such as the VS Code plugin Live Server.
+  
